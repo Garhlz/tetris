@@ -1,0 +1,32 @@
+[
+    {
+        "dateTime_": "2025-10-25 14:49:43",
+        "duration_": 141.846267147,
+        "score_": 9,
+        "username_": "test"
+    },
+    {
+        "dateTime_": "2025-10-25 14:53:14",
+        "duration_": 4.791130105999997,
+        "score_": 0,
+        "username_": "test"
+    },
+    {
+        "dateTime_": "2025-10-25 14:55:27",
+        "duration_": 2.4850452839999946,
+        "score_": 0,
+        "username_": "Guest"
+    },
+    {
+        "dateTime_": "2025-10-25 15:22:23",
+        "duration_": 78.47802563,
+        "score_": 3,
+        "username_": "elaine"
+    },
+    {
+        "dateTime_": "",
+        "duration_": 81.551585716,
+        "score_": 0,
+        "username_": "elaine"
+    }
+]
