@@ -35,7 +35,7 @@ glViewport(0, 0, width, height);
 ```
 
 ---
-## pacman 版本
+## arch + pacman 版本
 编译运行方法：
 - 构建：
 ```bash
@@ -58,6 +58,9 @@ cd build;make;cd ..;./build/main
 - 使用vcpkg进行构建：
 ```bash
 mkdir build; cd build;cmake .. -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake;make
+
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build .
 ```
 
 - 运行
@@ -68,4 +71,33 @@ cd ..; ./build/tetris
 - 修改之后运行：
 ```bash
 cd build;make;cd ..;./build/tetris
+```
+
+## windows + vcpkg 版本
+需要修改编码方式为GBK
+- 使用vcpkg进行构建：
+```bash
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build .
+```
+
+- 运行
+```bash
+cd ..
+.\build\Debug\tetris.exe
+```
+
+- 修改之后运行：
+```bash
+cd build
+cmake --build .
+cd ..
+.\build\Debug\tetris.exe
+```
+
+- 发布
+```bash
+cmake --build . --config Release
 ```

@@ -24,9 +24,27 @@
         "username_": "elaine"
     },
     {
-        "dateTime_": "",
-        "duration_": 81.551585716,
-        "score_": 0,
+        "dateTime_": "2025-10-25 17:49:13",
+        "duration_": 143.6124126,
+        "score_": 17,
         "username_": "elaine"
+    },
+    {
+        "dateTime_": "2025-10-25 18:05:24",
+        "duration_": 91.1293485,
+        "score_": 1,
+        "username_": "elaine"
+    },
+    {
+        "dateTime_": "2025-10-25 18:15:43",
+        "duration_": 114.9476434,
+        "score_": 5,
+        "username_": "elaine"
+    },
+    {
+        "dateTime_": "2025-10-25 18:23:12",
+        "duration_": 278.9523835,
+        "score_": 3,
+        "username_": "Guest"
     }
 ]

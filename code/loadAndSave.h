@@ -1,11 +1,11 @@
 // loadAndSave.h
-#ifndef LOAD_AND_SAVE_H // é˜²æ­¢å¤´æ–‡ä»¶è¢«é‡å¤åŒ…å«çš„Include Guard
+#ifndef LOAD_AND_SAVE_H // ·ÀÖ¹Í·ÎÄ¼ş±»ÖØ¸´°üº¬µÄInclude Guard
 #define LOAD_AND_SAVE_H
 
 #include <string>
 #include <vector>
-#include <nlohmann/json.hpp> // åŒ…å«jsonåº“å¤´æ–‡ä»¶
-// ä½¿ç”¨jsonå‘½åç©ºé—´
+#include <nlohmann/json.hpp> // °üº¬json¿âÍ·ÎÄ¼ş
+// Ê¹ÓÃjsonÃüÃû¿Õ¼ä
 using json = nlohmann::json;
 
 const std::string filename = "game_records.json";
@@ -33,28 +33,28 @@ private:
     double duration_;
     int score_;
 
-    // å£°æ˜å®ï¼Œä»¥ä¾¿åœ¨.cppæ–‡ä»¶ä¸­å®šä¹‰è½¬æ¢è§„åˆ™
+    // ÉùÃ÷ºê£¬ÒÔ±ãÔÚ.cppÎÄ¼şÖĞ¶¨Òå×ª»»¹æÔò
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameRecord, username_, dateTime_, duration_, score_);
 };
 
 /**
- * @brief ä» "game_records.json" æ–‡ä»¶åŠ è½½æ¸¸æˆè®°å½•ã€‚
- * å¦‚æœæ–‡ä»¶ä¸å­˜åœ¨æˆ–å†…å®¹æ— æ•ˆï¼Œåˆ™è¿”å›ä¸€ä¸ªç©ºçš„vectorå¹¶æ‰“å°æç¤ºã€‚
- * @return åŒ…å«æ‰€æœ‰å·²åŠ è½½æ¸¸æˆè®°å½•çš„ vectorã€‚
+ * @brief ´Ó "game_records.json" ÎÄ¼ş¼ÓÔØÓÎÏ·¼ÇÂ¼¡£
+ * Èç¹ûÎÄ¼ş²»´æÔÚ»òÄÚÈİÎŞĞ§£¬Ôò·µ»ØÒ»¸ö¿ÕµÄvector²¢´òÓ¡ÌáÊ¾¡£
+ * @return °üº¬ËùÓĞÒÑ¼ÓÔØÓÎÏ·¼ÇÂ¼µÄ vector¡£
  */
 std::vector<GameRecord> loadGameRecords();
 
 /**
- * @brief æ‰“å°æ¸¸æˆè®°å½•
+ * @brief ´òÓ¡ÓÎÏ·¼ÇÂ¼
  */
 void printGameRecords();
 
 /**
- * @brief å°†ä¸€æ¡æ–°çš„æ¸¸æˆè®°å½•è¿½åŠ åˆ° "game_records.json" æ–‡ä»¶ã€‚
- * ä¼šå…ˆè¯»å–ç°æœ‰è®°å½•ï¼Œæ·»åŠ æ–°è®°å½•ï¼Œç„¶åè¦†ç›–å†™å…¥æ–‡ä»¶ã€‚
- * @param user ç”¨æˆ·åã€‚
- * @param gameDuration æ¸¸æˆæ—¶é•¿ï¼ˆç§’ï¼‰ã€‚
- * @param finalScore æœ€ç»ˆå¾—åˆ†ã€‚
+ * @brief ½«Ò»ÌõĞÂµÄÓÎÏ·¼ÇÂ¼×·¼Óµ½ "game_records.json" ÎÄ¼ş¡£
+ * »áÏÈ¶ÁÈ¡ÏÖÓĞ¼ÇÂ¼£¬Ìí¼ÓĞÂ¼ÇÂ¼£¬È»ºó¸²¸ÇĞ´ÈëÎÄ¼ş¡£
+ * @param user ÓÃ»§Ãû¡£
+ * @param gameDuration ÓÎÏ·Ê±³¤£¨Ãë£©¡£
+ * @param finalScore ×îÖÕµÃ·Ö¡£
  */
 void saveGameRecord(const GameRecord &gameRecord);
 
