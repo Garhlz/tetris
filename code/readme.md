@@ -58,9 +58,6 @@ cd build;make;cd ..;./build/main
 - 使用vcpkg进行构建：
 ```bash
 mkdir build; cd build;cmake .. -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake;make
-
-cmake .. -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
-cmake --build .
 ```
 
 - 运行

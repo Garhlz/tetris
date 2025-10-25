@@ -1,70 +1,75 @@
 #include "Angel.h"
-#include <cstdio>  
-#include <cstring> 
+#include <cstdio>
+#include <cstring>
 #include <iostream>
-#include <string> 
+#include <string>
 
-// ÒÆ³ıÓĞÎÊÌâµÄ fopen_s ºê¶¨Òå
+// ç§»é™¤æœ‰é—®é¢˜çš„ fopen_s å®å®šä¹‰
 // #define fopen_s(pFile, filename, mode) ((*(pFile)) = fopen((filename), (mode))) == NULL
 
 namespace Angel
 {
     // Create a NULL-terminated string by reading the provided file
-    // ĞŞÕı°æ±¾£¬Ê¹ÓÃ±ê×¼ fopen ²¢Ìí¼Ó´íÎó¼ì²é
-    static char* readShaderSource(const char *shaderFile)
+    // ä¿®æ­£ç‰ˆæœ¬ï¼Œä½¿ç”¨æ ‡å‡† fopen å¹¶æ·»åŠ é”™è¯¯æ£€æŸ¥
+    static char *readShaderSource(const char *shaderFile)
     {
         FILE *fp = nullptr;
 
 #ifdef _WIN32
-        // ÔÚ Windows ÉÏ£¬¿ÉÒÔÑ¡ÔñÊ¹ÓÃ fopen_s ÒÔ»ñµÃÇ±ÔÚµÄ°²È«ÓÅÊÆ
+        // åœ¨ Windows ä¸Šï¼Œå¯ä»¥é€‰æ‹©ä½¿ç”¨ fopen_s ä»¥è·å¾—æ½œåœ¨çš„å®‰å…¨ä¼˜åŠ¿
         errno_t err = fopen_s(&fp, shaderFile, "r");
-        if (err != 0 || fp == nullptr) {
-             std::cerr << "´íÎó: ÎŞ·¨´ò¿ª×ÅÉ«Æ÷ÎÄ¼ş (fopen_s): " << shaderFile << std::endl;
-             // ¸ù¾İÔ­Ê¼´úÂëĞĞÎª£¬ÕâÀïÓ¦¸Ã·µ»Ø NULL
-             return NULL;
+        if (err != 0 || fp == nullptr)
+        {
+            std::cerr << "é”™è¯¯: æ— æ³•æ‰“å¼€ç€è‰²å™¨æ–‡ä»¶ (fopen_s): " << shaderFile << std::endl;
+            // æ ¹æ®åŸå§‹ä»£ç è¡Œä¸ºï¼Œè¿™é‡Œåº”è¯¥è¿”å› NULL
+            return NULL;
         }
 #else
-        // ÔÚ·Ç Windows Æ½Ì¨£¨Linux, macOS µÈ£©Ê¹ÓÃ±ê×¼ fopen
+        // åœ¨é Windows å¹³å°ï¼ˆLinux, macOS ç­‰ï¼‰ä½¿ç”¨æ ‡å‡† fopen
         fp = fopen(shaderFile, "r");
-        if (fp == NULL) {
-            // Ê¹ÓÃ perror Êä³ö¸üÏêÏ¸µÄÏµÍ³´íÎóĞÅÏ¢
-            perror(("´íÎó: ÎŞ·¨´ò¿ª×ÅÉ«Æ÷ÎÄ¼ş (fopen): " + std::string(shaderFile)).c_str());
+        if (fp == NULL)
+        {
+            // ä½¿ç”¨ perror è¾“å‡ºæ›´è¯¦ç»†çš„ç³»ç»Ÿé”™è¯¯ä¿¡æ¯
+            perror(("é”™è¯¯: æ— æ³•æ‰“å¼€ç€è‰²å™¨æ–‡ä»¶ (fopen): " + std::string(shaderFile)).c_str());
             return NULL;
         }
 #endif
 
-        // »ñÈ¡ÎÄ¼ş´óĞ¡
+        // è·å–æ–‡ä»¶å¤§å°
         fseek(fp, 0L, SEEK_END);
         long size = ftell(fp);
-        if (size == -1L) { // Ìí¼Ó´íÎó¼ì²é
-            perror("´íÎó: »ñÈ¡×ÅÉ«Æ÷ÎÄ¼ş´óĞ¡Ê§°Ü");
+        if (size == -1L)
+        { // æ·»åŠ é”™è¯¯æ£€æŸ¥
+            perror("é”™è¯¯: è·å–ç€è‰²å™¨æ–‡ä»¶å¤§å°å¤±è´¥");
             fclose(fp);
             return NULL;
         }
-        fseek(fp, 0L, SEEK_SET); // »Øµ½ÎÄ¼ş¿ªÍ·
+        fseek(fp, 0L, SEEK_SET); // å›åˆ°æ–‡ä»¶å¼€å¤´
 
-        // ·ÖÅäÄÚ´æ (+1 ÓÃÓÚ '\0')
-        char *buf = new(std::nothrow) char[size + 1]; // Ê¹ÓÃ nothrow ±ÜÃâÒì³£
-        if (!buf) {
-            std::cerr << "´íÎó: ·ÖÅä×ÅÉ«Æ÷Ô´ÂëÄÚ´æÊ§°Ü" << std::endl;
+        // åˆ†é…å†…å­˜ (+1 ç”¨äº '\0')
+        char *buf = new (std::nothrow) char[size + 1]; // ä½¿ç”¨ nothrow é¿å…å¼‚å¸¸
+        if (!buf)
+        {
+            std::cerr << "é”™è¯¯: åˆ†é…ç€è‰²å™¨æºç å†…å­˜å¤±è´¥" << std::endl;
             fclose(fp);
             return NULL;
         }
 
-        // Çå¿Õ»º³åÇø (¿ÉÑ¡£¬µ«Á¼ºÃÊµ¼ù)
+        // æ¸…ç©ºç¼“å†²åŒº (å¯é€‰ï¼Œä½†è‰¯å¥½å®è·µ)
         memset(buf, 0, size + 1);
 
-        // ¶ÁÈ¡ÎÄ¼şÄÚÈİ
+        // è¯»å–æ–‡ä»¶å†…å®¹
         size_t bytesRead = fread(buf, 1, size, fp);
-        // ¼ì²é¶ÁÈ¡ÊÇ·ñÍêÕûÒÔ¼°ÊÇ·ñ·¢Éú´íÎó
-        if (bytesRead < size && ferror(fp)) {
-            perror(("´íÎó: ¶ÁÈ¡×ÅÉ«Æ÷ÎÄ¼şÊ§°Ü: " + std::string(shaderFile)).c_str());
-            delete[] buf; // ÊÍ·ÅÄÚ´æ
+        // æ£€æŸ¥è¯»å–æ˜¯å¦å®Œæ•´ä»¥åŠæ˜¯å¦å‘ç”Ÿé”™è¯¯
+        if (bytesRead < size && ferror(fp))
+        {
+            perror(("é”™è¯¯: è¯»å–ç€è‰²å™¨æ–‡ä»¶å¤±è´¥: " + std::string(shaderFile)).c_str());
+            delete[] buf; // é‡Šæ”¾å†…å­˜
             fclose(fp);
             return NULL;
         }
 
-        // È·±£×Ö·û´®ÒÔ null ½áÎ² (¼´Ê¹ fread ÌáÇ°½áÊø)
+        // ç¡®ä¿å­—ç¬¦ä¸²ä»¥ null ç»“å°¾ (å³ä½¿ fread æå‰ç»“æŸ)
         buf[bytesRead] = '\0';
         fclose(fp);
 
@@ -72,14 +77,14 @@ namespace Angel
     }
 
     // Create a GLSL program object from vertex and fragment shader files
-    // InitShader º¯Êı±£³ÖÓëÄãÌá¹©µÄ°æ±¾ÍêÈ«ÏàÍ¬µÄ½á¹¹ºÍĞĞÎª
+    // InitShader å‡½æ•°ä¿æŒä¸ä½ æä¾›çš„ç‰ˆæœ¬å®Œå…¨ç›¸åŒçš„ç»“æ„å’Œè¡Œä¸º
     GLuint InitShader(const char *vShaderFile, const char *fShaderFile)
     {
         struct Shader
         {
             const char *filename;
             GLenum type;
-            GLchar *source; // ±£³ÖÊ¹ÓÃ GLchar*
+            GLchar *source; // ä¿æŒä½¿ç”¨ GLchar*
         } shaders[2] = {
             {vShaderFile, GL_VERTEX_SHADER, NULL},
             {fShaderFile, GL_FRAGMENT_SHADER, NULL}};
@@ -89,9 +94,9 @@ namespace Angel
         for (int i = 0; i < 2; ++i)
         {
             Shader &s = shaders[i];
-            // µ÷ÓÃĞŞÕıºóµÄ readShaderSource
+            // è°ƒç”¨ä¿®æ­£åçš„ readShaderSource
             s.source = readShaderSource(s.filename);
-            // ±£³ÖÔ­Ê¼µÄ NULL ¼ì²é·½Ê½
+            // ä¿æŒåŸå§‹çš„ NULL æ£€æŸ¥æ–¹å¼
             if (shaders[i].source == NULL)
             {
                 std::cerr << "Failed to read " << s.filename << std::endl;
@@ -113,16 +118,16 @@ namespace Angel
                 glGetShaderInfoLog(shader, logSize, NULL, logMsg);
                 std::cerr << logMsg << std::endl;
                 delete[] logMsg;
-                // ÔÚ±àÒëÊ§°ÜÊ±Ò²ĞèÒªÊÍ·Å s.source
+                // åœ¨ç¼–è¯‘å¤±è´¥æ—¶ä¹Ÿéœ€è¦é‡Šæ”¾ s.source
                 delete[] s.source;
                 exit(EXIT_FAILURE);
             }
 
-            // ±£³ÖÔÚ±àÒëºÍ¸½¼ÓºóÊÍ·ÅÔ´ÂëÄÚ´æ
+            // ä¿æŒåœ¨ç¼–è¯‘å’Œé™„åŠ åé‡Šæ”¾æºç å†…å­˜
             delete[] s.source;
 
             glAttachShader(program, shader);
-            // ±£³ÖÔ­Ê¼´úÂëĞĞÎª£¬²»ÔÚÁ´½ÓÇ°É¾³ı shader ¶ÔÏó
+            // ä¿æŒåŸå§‹ä»£ç è¡Œä¸ºï¼Œä¸åœ¨é“¾æ¥å‰åˆ é™¤ shader å¯¹è±¡
         }
 
         /* link and error check */
@@ -144,7 +149,7 @@ namespace Angel
         }
 
         /* use program object */
-        // ±£³ÖÔ­Ê¼´úÂëµÄĞĞÎª£¬ÔÚº¯ÊıÄ©Î²µ÷ÓÃ glUseProgram
+        // ä¿æŒåŸå§‹ä»£ç çš„è¡Œä¸ºï¼Œåœ¨å‡½æ•°æœ«å°¾è°ƒç”¨ glUseProgram
         glUseProgram(program);
 
         return program;

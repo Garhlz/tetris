@@ -4,21 +4,39 @@
  *    Mid-term Assignment - Tetris implementation sample code
  * ============================================================
  *
- * - ±¾´úÂë½ö½öÊÇ²Î¿¼´úÂë£¬¾ßÌåÒªÇóÇë²Î¿¼×÷ÒµËµÃ÷£¬°´ÕÕË³ĞòÖğ²½Íê³É¡£
- * - ¹ØÓÚÅäÖÃOpenGL¿ª·¢»·¾³¡¢±àÒëÔËĞĞ£¬Çë²Î¿¼µÚÒ»ÖÜÊµÑé¿Î³ÌÏà¹ØÎÄµµ¡£
+ * - æœ¬ä»£ç ä»…ä»…æ˜¯å‚è€ƒä»£ç ï¼Œå…·ä½“è¦æ±‚è¯·å‚è€ƒä½œä¸šè¯´æ˜ï¼ŒæŒ‰ç…§é¡ºåºé€æ­¥å®Œæˆã€‚
+ * - å…³äºé…ç½®OpenGLå¼€å‘ç¯å¢ƒã€ç¼–è¯‘è¿è¡Œï¼Œè¯·å‚è€ƒç¬¬ä¸€å‘¨å®éªŒè¯¾ç¨‹ç›¸å…³æ–‡æ¡£ã€‚
  *
- * - ÒÑÊµÏÖ¹¦ÄÜÈçÏÂ£º
- * - 1) »æÖÆÆåÅÌ¸ñºÍ¡®L¡¯ĞÍ·½¿é
- * - 2) ¼üÅÌ×ó/ÓÒ/ÏÂ¼ü¿ØÖÆ·½¿éµÄÒÆ¶¯£¬ÉÏ¼üĞı×ª·½¿é
+ * - å·²å®ç°åŠŸèƒ½å¦‚ä¸‹ï¼š
+ * - 1) ç»˜åˆ¶æ£‹ç›˜æ ¼å’Œâ€˜Lâ€™å‹æ–¹å—
+ * - 2) é”®ç›˜å·¦/å³/ä¸‹é”®æ§åˆ¶æ–¹å—çš„ç§»åŠ¨ï¼Œä¸Šé”®æ—‹è½¬æ–¹å—
  *
- * - Î´ÊµÏÖ¹¦ÄÜÈçÏÂ£º
- * - 1) »æÖÆ¡®J¡¯¡¢¡®Z¡¯µÈĞÎ×´µÄ·½¿é
- * - 2) Ëæ»úÉú³É·½¿é²¢¸³ÉÏ²»Í¬µÄÑÕÉ«
- * - 3) ·½¿éµÄ×Ô¶¯ÏòÏÂÒÆ¶¯
- * - 4) ·½¿éÖ®¼ä¡¢·½¿éÓë±ß½çÖ®¼äµÄÅö×²¼ì²â
- * - 5) ÆåÅÌ¸ñÖĞÃ¿Ò»ĞĞÌî³äÂúÖ®ºó×Ô¶¯Ïû³ı
- * - 6) ÆäËû
- *
+ * - æœªå®ç°åŠŸèƒ½å¦‚ä¸‹ï¼š
+ * - 1) ç»˜åˆ¶â€˜Jâ€™ã€â€˜Zâ€™ç­‰å½¢çŠ¶çš„æ–¹å—
+ * - 2) éšæœºç”Ÿæˆæ–¹å—å¹¶èµ‹ä¸Šä¸åŒçš„é¢œè‰²
+ * - 3) æ–¹å—çš„è‡ªåŠ¨å‘ä¸‹ç§»åŠ¨
+ * - 4) æ–¹å—ä¹‹é—´ã€æ–¹å—ä¸è¾¹ç•Œä¹‹é—´çš„ç¢°æ’æ£€æµ‹
+ * - 5) æ£‹ç›˜æ ¼ä¸­æ¯ä¸€è¡Œå¡«å……æ»¡ä¹‹åè‡ªåŠ¨æ¶ˆé™¤
+ * - 6) å…¶ä»–
+å®éªŒç»“è®ºï¼š
+æœ¬æ¬¡æœŸä¸­å¤§ä½œä¸šï¼Œæˆ‘åŸºäºæä¾›çš„æ¡†æ¶ä»£ç ï¼ŒæˆåŠŸå®ç°äº†ä¸€ä¸ªåŠŸèƒ½ç›¸å¯¹å®Œæ•´çš„ä¿„ç½—æ–¯æ–¹å—æ¸¸æˆã€‚æˆ‘ä¸»è¦å®Œæˆçš„å·¥ä½œåŒ…æ‹¬ï¼š
+1.å®ç°äº†æ‰€æœ‰7ç§æ–¹å—, å®šä¹‰äº†åŒ…æ‹¬ I, O, S, Z, J, L, T åœ¨å†…çš„æ‰€æœ‰æ ‡å‡†æ–¹å—å½¢çŠ¶åŠå…¶æ—‹è½¬çŠ¶æ€çš„åæ ‡æ•°æ®ã€‚
+
+2.å®Œæˆäº†æ ¸å¿ƒæ¸¸æˆé€»è¾‘ï¼š
+å®ç°äº†æ–¹å—çš„éšæœºç”Ÿæˆï¼ˆåŒ…æ‹¬å½¢çŠ¶å’Œé¢œè‰²ï¼‰ä¸è‡ªåŠ¨ä¸‹è½ï¼ˆåŸºäºæ—¶é—´ï¼‰ã€‚
+å®Œå–„äº†ç¢°æ’æ£€æµ‹é€»è¾‘ï¼Œç¡®ä¿æ–¹å—èƒ½åœ¨è¾¹ç•Œå†…ç§»åŠ¨ï¼Œå¹¶èƒ½æ­£ç¡®å †å åœ¨å…¶ä»–å·²å›ºå®šæ–¹å—ä¸Šã€‚å®ç°äº†æ–¹å—çš„å›ºå®š (setTile) å’Œè¡Œæ¶ˆé™¤ (checkFull, eliminateRow) æœºåˆ¶ï¼ŒåŒ…æ‹¬æ¶ˆé™¤åä¸Šæ–¹æ–¹å—çš„ä¸‹è½ã€‚
+
+3.å®ç°äº†å®Œæ•´çš„æ¸¸æˆæµç¨‹æ§åˆ¶ï¼š
+å¼•å…¥äº†æ¸¸æˆçŠ¶æ€æœº (GameState)ï¼Œç®¡ç†å¼€å§‹ç•Œé¢ã€æ¸¸æˆè¿›è¡Œã€æš‚åœå’Œæ¸¸æˆç»“æŸå››ä¸ªçŠ¶æ€ã€‚å®ç°äº†ç›¸åº”çš„é”®ç›˜äº¤äº’é€»è¾‘ï¼ˆEnter å¼€å§‹ï¼ŒP æš‚åœ/æ¢å¤ï¼ŒR é‡æ–°å¼€å§‹ï¼ŒQ/ESC é€€å‡ºï¼‰ã€‚
+
+4.æ·»åŠ äº†æ•°æ®æŒä¹…åŒ–:
+å¼•å…¥äº† nlohmann/json åº“ï¼Œå¹¶åˆ›å»ºäº† loadAndSave æ¨¡å—ã€‚
+å®ç°äº†åœ¨æ¸¸æˆå¼€å§‹å‰è·å–ç”¨æˆ·åï¼Œå¹¶åœ¨æ¸¸æˆç»“æŸåè‡ªåŠ¨ä¿å­˜åŒ…å«ç”¨æˆ·åã€å¾—åˆ†ã€æ—¶é•¿å’Œæ—¶é—´çš„æ¸¸æˆè®°å½•åˆ° JSON æ–‡ä»¶ã€‚
+å®ç°äº†åœ¨æ¸¸æˆå¯åŠ¨æ—¶åŠ è½½å¹¶æ‰“å°å†å²æ¸¸æˆè®°å½•çš„åŠŸèƒ½ã€‚
+
+5.è§£å†³äº†è·¨å¹³å°å’Œç¯å¢ƒé—®é¢˜:
+åœ¨ Windows ç¯å¢ƒä¸‹é…ç½®äº† vcpkg æ¥ç®¡ç† glfw, glm, nlohmann-json ç­‰ä¾èµ–ã€‚
+è§£å†³äº†è·¨å¹³å° API å…¼å®¹æ€§é—®é¢˜ä»¥åŠ MSVC ç¼–è¯‘é”™è¯¯ã€‚
  */
 
 #include "Angel.h"
@@ -30,8 +48,8 @@
 using glm::vec2;
 using glm::vec4;
 
-int rotation = 0; // ¿ØÖÆµ±Ç°´°¿ÚÖĞµÄ·½¿éĞı×ª
-vec2 tile[4];	  // ±íÊ¾µ±Ç°´°¿ÚÖĞµÄ·½¿é
+int rotation = 0; // æ§åˆ¶å½“å‰çª—å£ä¸­çš„æ–¹å—æ—‹è½¬
+vec2 tile[4];	  // è¡¨ç¤ºå½“å‰çª—å£ä¸­çš„æ–¹å—
 int xsize = 400;
 int ysize = 720;
 
@@ -41,43 +59,43 @@ double endTime;
 double lastTime = glfwGetTime();
 double fallInterval = 0.5;
 
-// µ¥¸öÍø¸ñ´óĞ¡
+// å•ä¸ªç½‘æ ¼å¤§å°
 int tile_width = 50;
 
-// Íø¸ñ²¼´óĞ¡
+// ç½‘æ ¼å¸ƒå¤§å°
 const int board_width = 10;
 const int board_height = 20;
 
-// Íø¸ñÈı½ÇÃæÆ¬µÄ¶¥µãÊıÁ¿
+// ç½‘æ ¼ä¸‰è§’é¢ç‰‡çš„é¡¶ç‚¹æ•°é‡
 const int points_num = board_height * board_width * 6;
 
-// ÎÒÃÇÓÃ»­Ö±ÏßµÄ·½·¨»æÖÆÍø¸ñ
-// °üº¬ÊúÏß board_width+1 Ìõ
-// °üº¬ºáÏß board_height+1 Ìõ
-// Ò»ÌõÏß2¸ö¶¥µã×ø±ê
-// Íø¸ñÏßµÄÊıÁ¿
+// æˆ‘ä»¬ç”¨ç”»ç›´çº¿çš„æ–¹æ³•ç»˜åˆ¶ç½‘æ ¼
+// åŒ…å«ç«–çº¿ board_width+1 æ¡
+// åŒ…å«æ¨ªçº¿ board_height+1 æ¡
+// ä¸€æ¡çº¿2ä¸ªé¡¶ç‚¹åæ ‡
+// ç½‘æ ¼çº¿çš„æ•°é‡
 const int board_line_num = (board_width + 1) + (board_height + 1);
 
 int score = 0;
-// ÏÈÖ±½ÓÓÃÒÑ¾­Ïû³ıµÄĞĞÊı±íÊ¾µÃ·Ö
+// å…ˆç›´æ¥ç”¨å·²ç»æ¶ˆé™¤çš„è¡Œæ•°è¡¨ç¤ºå¾—åˆ†
 
 enum GameState
 {
-	STATE_START_SCREEN, // ¿ªÊ¼½çÃæ
-	STATE_PLAYING,		// ÓÎÏ·ÖĞ
-	STATE_PAUSE,		// ÔİÍ£ÖĞ
-	STATE_GAME_OVER		// ÓÎÏ·½áÊø
+	STATE_START_SCREEN, // å¼€å§‹ç•Œé¢
+	STATE_PLAYING,		// æ¸¸æˆä¸­
+	STATE_PAUSE,		// æš‚åœä¸­
+	STATE_GAME_OVER		// æ¸¸æˆç»“æŸ
 };
-// Ìí¼ÓÈ«¾Ö±äÁ¿À´´æ´¢µ±Ç°×´Ì¬£¬³õÊ¼Îª¿ªÊ¼½çÃæ
+// æ·»åŠ å…¨å±€å˜é‡æ¥å­˜å‚¨å½“å‰çŠ¶æ€ï¼Œåˆå§‹ä¸ºå¼€å§‹ç•Œé¢
 GameState currentState = STATE_START_SCREEN;
 
 std::string currentUsername;
 
-// Ö±½ÓÓÃÈ«¾Ö±äÁ¿À´¹ÜÀíĞÅÏ¢
+// ç›´æ¥ç”¨å…¨å±€å˜é‡æ¥ç®¡ç†ä¿¡æ¯
 GameRecord gameRecord;
 
-// ÓÃÒ»¸ö¶şÎ¬Êı×é±íÊ¾ËùÓĞ¿ÉÄÜ³öÏÖµÄ·½¿éºÍ·½Ïò
-// ×¢ÒâÈç¹ûÖ»ÓĞÁ½¸ö·½Ïò£¬¾ÍµÃ½»´í´æ´¢
+// ç”¨ä¸€ä¸ªäºŒç»´æ•°ç»„è¡¨ç¤ºæ‰€æœ‰å¯èƒ½å‡ºç°çš„æ–¹å—å’Œæ–¹å‘
+// æ³¨æ„å¦‚æœåªæœ‰ä¸¤ä¸ªæ–¹å‘ï¼Œå°±å¾—äº¤é”™å­˜å‚¨
 vec2 OShape[4][4] =
 	{{vec2(0, 0), vec2(0, -1), vec2(-1, 0), vec2(-1, -1)},
 	 {vec2(0, 0), vec2(0, -1), vec2(-1, 0), vec2(-1, -1)},
@@ -131,32 +149,32 @@ vec2 (*allShapes[7])[4][4] = {
 	&TShape};
 
 vec4 shapeColors[7] = {
-	vec4(1.0, 0.5, 0.0, 1.0), // O (³ÈÉ«)
-	vec4(0.0, 1.0, 1.0, 1.0), // I (ÇàÉ«)
-	vec4(1.0, 1.0, 0.0, 1.0), // S (»ÆÉ«)
-	vec4(0.0, 1.0, 0.0, 1.0), // Z (ÂÌÉ«)
-	vec4(1.0, 0.0, 0.0, 1.0), // L (ºìÉ«)
-	vec4(0.0, 0.0, 1.0, 1.0), // J (À¶É«)
-	vec4(0.5, 0.0, 0.5, 1.0)  // T (×ÏÉ«)
+	vec4(1.0, 0.5, 0.0, 1.0), // O (æ©™è‰²)
+	vec4(0.0, 1.0, 1.0, 1.0), // I (é’è‰²)
+	vec4(1.0, 1.0, 0.0, 1.0), // S (é»„è‰²)
+	vec4(0.0, 1.0, 0.0, 1.0), // Z (ç»¿è‰²)
+	vec4(1.0, 0.0, 0.0, 1.0), // L (çº¢è‰²)
+	vec4(0.0, 0.0, 1.0, 1.0), // J (è“è‰²)
+	vec4(0.5, 0.0, 0.5, 1.0)  // T (ç´«è‰²)
 };
 
-// Ìí¼ÓÒ»¸öÈ«¾Ö±äÁ¿À´´æ´¢µ±Ç°·½¿éµÄÀàĞÍºÍÑÕÉ«
+// æ·»åŠ ä¸€ä¸ªå…¨å±€å˜é‡æ¥å­˜å‚¨å½“å‰æ–¹å—çš„ç±»å‹å’Œé¢œè‰²
 int currentShapeType;
 vec4 currentTileColor;
 
-// »æÖÆ´°¿ÚµÄÑÕÉ«±äÁ¿
+// ç»˜åˆ¶çª—å£çš„é¢œè‰²å˜é‡
 vec4 white = vec4(1.0, 1.0, 1.0, 1.0);
 vec4 black = vec4(0.0, 0.0, 0.0, 1.0);
 vec4 orange = vec4(1.0, 0.5, 0.0, 1.0);
 vec4 gray = vec4(0.5, 0.5, 0.5, 1.0);
-// µ±Ç°·½¿éµÄÎ»ÖÃ£¨ÒÔÆåÅÌ¸ñµÄ×óÏÂ½ÇÎªÔ­µãµÄ×ø±êÏµ£©
+// å½“å‰æ–¹å—çš„ä½ç½®ï¼ˆä»¥æ£‹ç›˜æ ¼çš„å·¦ä¸‹è§’ä¸ºåŸç‚¹çš„åæ ‡ç³»ï¼‰
 vec2 tilePos = vec2(5, 19);
 
-// ²¼¶ûÊı×é±íÊ¾ÆåÅÌ¸ñµÄÄ³Î»ÖÃÊÇ·ñ±»·½¿éÌî³ä£¬¼´board[x][y] = true±íÊ¾(x,y)´¦¸ñ×Ó±»Ìî³ä¡£
-// £¨ÒÔÆåÅÌ¸ñµÄ×óÏÂ½ÇÎªÔ­µãµÄ×ø±êÏµ£©
+// å¸ƒå°”æ•°ç»„è¡¨ç¤ºæ£‹ç›˜æ ¼çš„æŸä½ç½®æ˜¯å¦è¢«æ–¹å—å¡«å……ï¼Œå³board[x][y] = trueè¡¨ç¤º(x,y)å¤„æ ¼å­è¢«å¡«å……ã€‚
+// ï¼ˆä»¥æ£‹ç›˜æ ¼çš„å·¦ä¸‹è§’ä¸ºåŸç‚¹çš„åæ ‡ç³»ï¼‰
 bool board[board_width][board_height];
 
-// µ±ÆåÅÌ¸ñÄ³Ğ©Î»ÖÃ±»·½¿éÌî³äÖ®ºó£¬¼ÇÂ¼ÕâĞ©Î»ÖÃÉÏ±»Ìî³äµÄÑÕÉ«
+// å½“æ£‹ç›˜æ ¼æŸäº›ä½ç½®è¢«æ–¹å—å¡«å……ä¹‹åï¼Œè®°å½•è¿™äº›ä½ç½®ä¸Šè¢«å¡«å……çš„é¢œè‰²
 vec4 boardColors[points_num];
 
 GLuint locxsize;
@@ -172,26 +190,26 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 
 bool checkValid(vec2 pos)
 {
-	// ¼ì²éÊÇ·ñÔÚ±ß½çÄÚ
+	// æ£€æŸ¥æ˜¯å¦åœ¨è¾¹ç•Œå†…
 	if ((pos.x >= 0) && (pos.x < board_width) && (pos.y >= 0) && (pos.y < board_height))
 	{
-		// Èç¹ûÔÚ±ß½çÄÚ£¬ÔÙ¼ì²é¸ÃÎ»ÖÃÊÇ·ñÒÑ±»Õ¼¾İ
+		// å¦‚æœåœ¨è¾¹ç•Œå†…ï¼Œå†æ£€æŸ¥è¯¥ä½ç½®æ˜¯å¦å·²è¢«å æ®
 		if (board[(int)pos.x][(int)pos.y])
 		{
-			return false; // Î»ÖÃ±»Õ¼¾İ£¬ÎŞĞ§
+			return false; // ä½ç½®è¢«å æ®ï¼Œæ— æ•ˆ
 		}
-		return true; // Î»ÖÃÔÚ½çÄÚÇÒÎ´±»Õ¼¾İ£¬ÓĞĞ§
+		return true; // ä½ç½®åœ¨ç•Œå†…ä¸”æœªè¢«å æ®ï¼Œæœ‰æ•ˆ
 	}
 	else
 	{
-		return false; // ³¬³ö±ß½ç£¬ÎŞĞ§
+		return false; // è¶…å‡ºè¾¹ç•Œï¼Œæ— æ•ˆ
 	}
 }
 
-// ĞŞ¸ÄÆåÅÌ¸ñÔÚposÎ»ÖÃµÄÑÕÉ«Îªcolour£¬²¢ÇÒ¸üĞÂ¶ÔÓ¦µÄVBO
+// ä¿®æ”¹æ£‹ç›˜æ ¼åœ¨posä½ç½®çš„é¢œè‰²ä¸ºcolourï¼Œå¹¶ä¸”æ›´æ–°å¯¹åº”çš„VBO
 void changeCellColor(vec2 pos, vec4 colour)
 {
-	// Ã¿¸ö¸ñ×ÓÊÇ¸öÕı·½ĞÎ£¬°üº¬Á½¸öÈı½ÇĞÎ£¬×Ü¹²6¸ö¶¨µã£¬²¢ÔÚÌØ¶¨µÄÎ»ÖÃ¸³ÉÏÊÊµ±µÄÑÕÉ«
+	// æ¯ä¸ªæ ¼å­æ˜¯ä¸ªæ­£æ–¹å½¢ï¼ŒåŒ…å«ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œæ€»å…±6ä¸ªå®šç‚¹ï¼Œå¹¶åœ¨ç‰¹å®šçš„ä½ç½®èµ‹ä¸Šé€‚å½“çš„é¢œè‰²
 	for (int i = 0; i < 6; i++)
 		boardColors[(int)(6 * (board_width * pos.y + pos.x) + i)] = colour;
 
@@ -199,30 +217,30 @@ void changeCellColor(vec2 pos, vec4 colour)
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[3]);
 
-	// ¼ÆËãÆ«ÒÆÁ¿£¬ÔÚÊÊµ±µÄÎ»ÖÃ¸³ÉÏÑÕÉ«
+	// è®¡ç®—åç§»é‡ï¼Œåœ¨é€‚å½“çš„ä½ç½®èµ‹ä¸Šé¢œè‰²
 	int offset = 6 * sizeof(vec4) * (int)(board_width * pos.y + pos.x);
 	glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(newcolours), newcolours);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-// µ±Ç°·½¿éÒÆ¶¯»òÕßĞı×ªÊ±£¬¸üĞÂVBO
+// å½“å‰æ–¹å—ç§»åŠ¨æˆ–è€…æ—‹è½¬æ—¶ï¼Œæ›´æ–°VBO
 void updateTile()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[4]);
 
-	// Ã¿¸ö·½¿é°üº¬ËÄ¸ö¸ñ×Ó
+	// æ¯ä¸ªæ–¹å—åŒ…å«å››ä¸ªæ ¼å­
 	for (int i = 0; i < 4; i++)
 	{
-		// ¼ÆËã¸ñ×ÓµÄ×ø±êÖµ
+		// è®¡ç®—æ ¼å­çš„åæ ‡å€¼
 		GLfloat x = tilePos.x + tile[i].x;
 		GLfloat y = tilePos.y + tile[i].y;
-		// ĞŞ¸ÄÉî¶È
+		// ä¿®æ”¹æ·±åº¦
 		vec4 p1 = vec4(tile_width + (x * tile_width), tile_width + (y * tile_width), -0.1, 1);
 		vec4 p2 = vec4(tile_width + (x * tile_width), tile_width * 2 + (y * tile_width), -0.1, 1);
 		vec4 p3 = vec4(tile_width * 2 + (x * tile_width), tile_width + (y * tile_width), -0.1, 1);
 		vec4 p4 = vec4(tile_width * 2 + (x * tile_width), tile_width * 2 + (y * tile_width), -0.1, 1);
 
-		// Ã¿¸ö¸ñ×Ó°üº¬Á½¸öÈı½ÇĞÎ£¬ËùÒÔÓĞ6¸ö¶¥µã×ø±ê
+		// æ¯ä¸ªæ ¼å­åŒ…å«ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œæ‰€ä»¥æœ‰6ä¸ªé¡¶ç‚¹åæ ‡
 		vec4 newpoints[6] = {p1, p2, p3, p2, p3, p4};
 		glBufferSubData(GL_ARRAY_BUFFER, i * 6 * sizeof(vec4), 6 * sizeof(vec4), newpoints);
 	}
@@ -232,53 +250,53 @@ void updateTile()
 void gameover()
 {
 	currentState = STATE_GAME_OVER;
-	// ¸üĞÂ¼ÇÂ¼ĞÅÏ¢
+	// æ›´æ–°è®°å½•ä¿¡æ¯
 	endTime = glfwGetTime();
 	double duration = endTime - startTime;
 	gameRecord.setDuration(duration);
 	gameRecord.setScore(score);
 	saveGameRecord(gameRecord);
-	std::cout<<"-------------------------------------------------------------"<<std::endl;
-	std::cout<<"ÓÎÏ·½áÊø! "<<std::endl;
-	std::cout<<"ÓÃ»§Ãû: "<<gameRecord.getUsername()<<std::endl;
-	std::cout<<"Ê±¼ä: "<<gameRecord.getDateTime()<<std::endl;
-	std::cout<<"ÓÃÊ±: "<<gameRecord.getDuration()<<std::endl;
-	std::cout<<"×îÖÕµÃ·Ö: "<<gameRecord.getScore()<<std::endl;
-	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	std::cout << "-------------------------------------------------------------" << std::endl;
+	std::cout << "æ¸¸æˆç»“æŸ! " << std::endl;
+	std::cout << "ç”¨æˆ·å: " << gameRecord.getUsername() << std::endl;
+	std::cout << "æ—¶é—´: " << gameRecord.getDateTime() << std::endl;
+	std::cout << "ç”¨æ—¶: " << gameRecord.getDuration() << std::endl;
+	std::cout << "æœ€ç»ˆå¾—åˆ†: " << gameRecord.getScore() << std::endl;
+	std::cout << "-------------------------------------------------------------" << std::endl;
 	score = 0;
 	gameRecord.clear();
 	gameRecord.setUsername(currentUsername);
 }
 
-// ÉèÖÃµ±Ç°·½¿éÎªÏÂÒ»¸ö¼´½«³öÏÖµÄ·½¿é¡£ÔÚÓÎÏ·¿ªÊ¼µÄÊ±ºòµ÷ÓÃÀ´´´½¨Ò»¸ö³õÊ¼µÄ·½¿é£¬
-// ÔÚÓÎÏ·½áÊøµÄÊ±ºòÅĞ¶Ï£¨Ã»ÓĞ×ã¹»µÄ¿Õ¼äÀ´Éú³ÉĞÂµÄ·½¿é£©
+// è®¾ç½®å½“å‰æ–¹å—ä¸ºä¸‹ä¸€ä¸ªå³å°†å‡ºç°çš„æ–¹å—ã€‚åœ¨æ¸¸æˆå¼€å§‹çš„æ—¶å€™è°ƒç”¨æ¥åˆ›å»ºä¸€ä¸ªåˆå§‹çš„æ–¹å—ï¼Œ
+// åœ¨æ¸¸æˆç»“æŸçš„æ—¶å€™åˆ¤æ–­ï¼ˆæ²¡æœ‰è¶³å¤Ÿçš„ç©ºé—´æ¥ç”Ÿæˆæ–°çš„æ–¹å—ï¼‰
 void newTile()
 {
-	// ½«ĞÂ·½¿é·ÅÓÚÆåÅÌ¸ñµÄ×îÉÏĞĞÖĞ¼äÎ»ÖÃ²¢ÉèÖÃÄ¬ÈÏµÄĞı×ª·½Ïò
+	// å°†æ–°æ–¹å—æ”¾äºæ£‹ç›˜æ ¼çš„æœ€ä¸Šè¡Œä¸­é—´ä½ç½®å¹¶è®¾ç½®é»˜è®¤çš„æ—‹è½¬æ–¹å‘
 	tilePos = vec2(board_width / 2, board_height - 2);
-	rotation = rand() % 4; // Ëæ»ú³õÊ¼Ğı×ª×´Ì¬ (0-3)
+	rotation = rand() % 4; // éšæœºåˆå§‹æ—‹è½¬çŠ¶æ€ (0-3)
 
-	currentShapeType = rand() % 7;					  // Ëæ»úÑ¡ÔñÒ»¸öĞÎ×´ (0-6)
-	currentTileColor = shapeColors[currentShapeType]; // »ñÈ¡¶ÔÓ¦ÑÕÉ«
+	currentShapeType = rand() % 7;					  // éšæœºé€‰æ‹©ä¸€ä¸ªå½¢çŠ¶ (0-6)
+	currentTileColor = shapeColors[currentShapeType]; // è·å–å¯¹åº”é¢œè‰²
 
-	// ´ÓÑ¡ÖĞµÄĞÎ×´ºÍĞı×ª×´Ì¬ÖĞ»ñÈ¡·½¿éÊı¾İ
+	// ä»é€‰ä¸­çš„å½¢çŠ¶å’Œæ—‹è½¬çŠ¶æ€ä¸­è·å–æ–¹å—æ•°æ®
 	for (int i = 0; i < 4; i++)
 	{
-		// Ê¹ÓÃ allShapes Êı×éÀ´»ñÈ¡ÕıÈ·µÄĞÎ×´ºÍĞı×ª
+		// ä½¿ç”¨ allShapes æ•°ç»„æ¥è·å–æ­£ç¡®çš„å½¢çŠ¶å’Œæ—‹è½¬
 		tile[i] = (*allShapes[currentShapeType])[rotation][i];
 		if (!checkValid(tilePos + tile[i]))
-		{ // Ö»ÒªÓĞÒ»¸ö¸ñ×ÓÎŞĞ§,ÓÎÏ·½áÊø
+		{ // åªè¦æœ‰ä¸€ä¸ªæ ¼å­æ— æ•ˆ,æ¸¸æˆç»“æŸ
 			gameover();
 			return;
 		}
 	}
 
-	updateTile(); // ¸üĞÂµ±Ç°·½¿éµÄVBO
+	updateTile(); // æ›´æ–°å½“å‰æ–¹å—çš„VBO
 
-	// ¸øĞÂ·½¿é¸³ÉÏ¶ÔÓ¦µÄÑÕÉ«
-	vec4 newcolours[24]; // 4¸ö¸ñ×Ó * 6¸ö¶¥µã
+	// ç»™æ–°æ–¹å—èµ‹ä¸Šå¯¹åº”çš„é¢œè‰²
+	vec4 newcolours[24]; // 4ä¸ªæ ¼å­ * 6ä¸ªé¡¶ç‚¹
 	for (int i = 0; i < 24; i++)
-		newcolours[i] = currentTileColor; // Ê¹ÓÃËæ»úÑ¡È¡µÄÑÕÉ«
+		newcolours[i] = currentTileColor; // ä½¿ç”¨éšæœºé€‰å–çš„é¢œè‰²
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[5]);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(newcolours), newcolours);
@@ -287,46 +305,46 @@ void newTile()
 	glBindVertexArray(0);
 }
 
-// ÓÎÏ·ºÍOpenGL³õÊ¼»¯
+// æ¸¸æˆå’ŒOpenGLåˆå§‹åŒ–
 void init()
 {
-	// ³õÊ¼»¯ÆåÅÌ¸ñ£¬ÕâÀïÓÃ»­Ö±ÏßµÄ·½·¨»æÖÆÍø¸ñ
-	// °üº¬ÊúÏß board_width+1 Ìõ
-	// °üº¬ºáÏß board_height+1 Ìõ
-	// Ò»ÌõÏß2¸ö¶¥µã×ø±ê£¬²¢ÇÒÃ¿¸ö¶¥µãÒ»¸öÑÕÉ«Öµ
+	// åˆå§‹åŒ–æ£‹ç›˜æ ¼ï¼Œè¿™é‡Œç”¨ç”»ç›´çº¿çš„æ–¹æ³•ç»˜åˆ¶ç½‘æ ¼
+	// åŒ…å«ç«–çº¿ board_width+1 æ¡
+	// åŒ…å«æ¨ªçº¿ board_height+1 æ¡
+	// ä¸€æ¡çº¿2ä¸ªé¡¶ç‚¹åæ ‡ï¼Œå¹¶ä¸”æ¯ä¸ªé¡¶ç‚¹ä¸€ä¸ªé¢œè‰²å€¼
 
 	vec4 gridpoints[board_line_num * 2];
 	vec4 gridcolours[board_line_num * 2];
 
-	// »æÖÆÍø¸ñÏß£¬ ĞŞ¸ÄÉî¶È
-	// ×İÏòÏß
+	// ç»˜åˆ¶ç½‘æ ¼çº¿ï¼Œ ä¿®æ”¹æ·±åº¦
+	// çºµå‘çº¿
 	for (int i = 0; i < (board_width + 1); i++)
 	{
 		gridpoints[2 * i] = vec4((tile_width + (tile_width * i)), tile_width, -0.3, 1);
 		gridpoints[2 * i + 1] = vec4((tile_width + (tile_width * i)), (board_height + 1) * tile_width, -0.3, 1);
 	}
 
-	// Ë®Æ½Ïß
+	// æ°´å¹³çº¿
 	for (int i = 0; i < (board_height + 1); i++)
 	{
 		gridpoints[2 * (board_width + 1) + 2 * i] = vec4(tile_width, (tile_width + (tile_width * i)), -0.3, 1);
 		gridpoints[2 * (board_width + 1) + 2 * i + 1] = vec4((board_width + 1) * tile_width, (tile_width + (tile_width * i)), -0.3, 1);
 	}
 
-	// ½«ËùÓĞÏß¸³³É°×É«
+	// å°†æ‰€æœ‰çº¿èµ‹æˆç™½è‰²
 	for (int i = 0; i < (board_line_num * 2); i++)
 		gridcolours[i] = white;
 
-	// ³õÊ¼»¯ÆåÅÌ¸ñ£¬²¢½«Ã»ÓĞ±»Ìî³äµÄ¸ñ×ÓÉèÖÃ³ÉºÚÉ«
+	// åˆå§‹åŒ–æ£‹ç›˜æ ¼ï¼Œå¹¶å°†æ²¡æœ‰è¢«å¡«å……çš„æ ¼å­è®¾ç½®æˆé»‘è‰²
 	vec4 boardpoints[points_num];
 	for (int i = 0; i < points_num; i++)
 		boardColors[i] = black;
 
-	// ¶ÔÃ¿¸ö¸ñ×Ó£¬³õÊ¼»¯6¸ö¶¥µã£¬±íÊ¾Á½¸öÈı½ÇĞÎ£¬»æÖÆÒ»¸öÕı·½ĞÎ¸ñ×Ó
+	// å¯¹æ¯ä¸ªæ ¼å­ï¼Œåˆå§‹åŒ–6ä¸ªé¡¶ç‚¹ï¼Œè¡¨ç¤ºä¸¤ä¸ªä¸‰è§’å½¢ï¼Œç»˜åˆ¶ä¸€ä¸ªæ­£æ–¹å½¢æ ¼å­
 	for (int i = 0; i < board_height; i++)
 		for (int j = 0; j < board_width; j++)
 		{
-			// ĞŞ¸ÄÉî¶È
+			// ä¿®æ”¹æ·±åº¦
 			vec4 p1 = vec4(tile_width + (j * tile_width), tile_width + (i * tile_width), -0.2, 1);
 			vec4 p2 = vec4(tile_width + (j * tile_width), tile_width * 2 + (i * tile_width), -0.2, 1);
 			vec4 p3 = vec4(tile_width * 2 + (j * tile_width), tile_width + (i * tile_width), -0.2, 1);
@@ -339,12 +357,12 @@ void init()
 			boardpoints[6 * (board_width * i + j) + 5] = p4;
 		}
 
-	// ½«ÆåÅÌ¸ñËùÓĞÎ»ÖÃµÄÌî³äÓë·ñ¶¼ÉèÖÃÎªfalse£¨Ã»ÓĞ±»Ìî³ä£©
+	// å°†æ£‹ç›˜æ ¼æ‰€æœ‰ä½ç½®çš„å¡«å……ä¸å¦éƒ½è®¾ç½®ä¸ºfalseï¼ˆæ²¡æœ‰è¢«å¡«å……ï¼‰
 	for (int i = 0; i < board_width; i++)
 		for (int j = 0; j < board_height; j++)
 			board[i][j] = false;
 
-	// ÔØÈë×ÅÉ«Æ÷
+	// è½½å…¥ç€è‰²å™¨
 	std::string vshader, fshader;
 	vshader = "shaders/vshader.glsl";
 	fshader = "shaders/fshader.glsl";
@@ -358,49 +376,49 @@ void init()
 	GLuint vColor = glGetAttribLocation(program, "vColor");
 
 	glGenVertexArrays(3, &vao[0]);
-	glBindVertexArray(vao[0]); // ÆåÅÌ¸ñ¶¥µã
+	glBindVertexArray(vao[0]); // æ£‹ç›˜æ ¼é¡¶ç‚¹
 
 	glGenBuffers(2, vbo);
 
-	// ÆåÅÌ¸ñ¶¥µãÎ»ÖÃ
+	// æ£‹ç›˜æ ¼é¡¶ç‚¹ä½ç½®
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, (board_line_num * 2) * sizeof(vec4), gridpoints, GL_STATIC_DRAW);
 	glVertexAttribPointer(vPosition, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(vPosition);
 
-	// ÆåÅÌ¸ñ¶¥µãÑÕÉ«
+	// æ£‹ç›˜æ ¼é¡¶ç‚¹é¢œè‰²
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
 	glBufferData(GL_ARRAY_BUFFER, (board_line_num * 2) * sizeof(vec4), gridcolours, GL_STATIC_DRAW);
 	glVertexAttribPointer(vColor, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(vColor);
 
-	glBindVertexArray(vao[1]); // ÆåÅÌ¸ñÃ¿¸ö¸ñ×Ó
+	glBindVertexArray(vao[1]); // æ£‹ç›˜æ ¼æ¯ä¸ªæ ¼å­
 
 	glGenBuffers(2, &vbo[2]);
 
-	// ÆåÅÌ¸ñÃ¿¸ö¸ñ×Ó¶¥µãÎ»ÖÃ
+	// æ£‹ç›˜æ ¼æ¯ä¸ªæ ¼å­é¡¶ç‚¹ä½ç½®
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[2]);
 	glBufferData(GL_ARRAY_BUFFER, points_num * sizeof(vec4), boardpoints, GL_STATIC_DRAW);
 	glVertexAttribPointer(vPosition, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(vPosition);
 
-	// ÆåÅÌ¸ñÃ¿¸ö¸ñ×Ó¶¥µãÑÕÉ«
+	// æ£‹ç›˜æ ¼æ¯ä¸ªæ ¼å­é¡¶ç‚¹é¢œè‰²
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[3]);
 	glBufferData(GL_ARRAY_BUFFER, points_num * sizeof(vec4), boardColors, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(vColor, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(vColor);
 
-	glBindVertexArray(vao[2]); // µ±Ç°·½¿é
+	glBindVertexArray(vao[2]); // å½“å‰æ–¹å—
 
 	glGenBuffers(2, &vbo[4]);
 
-	// µ±Ç°·½¿é¶¥µãÎ»ÖÃ
+	// å½“å‰æ–¹å—é¡¶ç‚¹ä½ç½®
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[4]);
 	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(vec4), NULL, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(vPosition, 4, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(vPosition);
 
-	// µ±Ç°·½¿é¶¥µãÑÕÉ«
+	// å½“å‰æ–¹å—é¡¶ç‚¹é¢œè‰²
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[5]);
 	glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(vec4), NULL, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(vColor, 4, GL_FLOAT, GL_FALSE, 0, 0);
@@ -410,24 +428,24 @@ void init()
 
 	glClearColor(0, 0, 0, 0);
 
-	// ÆôÓÃÉî¶È²âÊÔ
+	// å¯ç”¨æ·±åº¦æµ‹è¯•
 	// glEnable(GL_DEPTH_TEST);
-	// ÓÎÏ·³õÊ¼»¯
+	// æ¸¸æˆåˆå§‹åŒ–
 	newTile();
 }
 
-// ÔÚÆåÅÌÉÏÓĞ×ã¹»¿Õ¼äµÄÇé¿öÏÂĞı×ªµ±Ç°·½¿é
+// åœ¨æ£‹ç›˜ä¸Šæœ‰è¶³å¤Ÿç©ºé—´çš„æƒ…å†µä¸‹æ—‹è½¬å½“å‰æ–¹å—
 void rotate()
 {
 	int nextRotation = (rotation + 1) % 4;
-	vec2 nextTileCoords[4]; // ÏÂÒ»¸ö×´Ì¬µÄ×ø±ê
+	vec2 nextTileCoords[4]; // ä¸‹ä¸€ä¸ªçŠ¶æ€çš„åæ ‡
 	for (int i = 0; i < 4; ++i)
 	{
-		// Ê¹ÓÃ nextRotation »ñÈ¡×ø±ê
+		// ä½¿ç”¨ nextRotation è·å–åæ ‡
 		nextTileCoords[i] = (*allShapes[currentShapeType])[nextRotation][i];
 	}
 
-	// ¼ì²éĞı×ªºóµÄÎ»ÖÃÊÇ·ñÓĞĞ§
+	// æ£€æŸ¥æ—‹è½¬åçš„ä½ç½®æ˜¯å¦æœ‰æ•ˆ
 	bool canRotate = true;
 	for (int i = 0; i < 4; ++i)
 	{
@@ -440,12 +458,12 @@ void rotate()
 
 	if (canRotate)
 	{
-		rotation = nextRotation; // ¸üĞÂĞı×ª×´Ì¬
+		rotation = nextRotation; // æ›´æ–°æ—‹è½¬çŠ¶æ€
 		for (int i = 0; i < 4; i++)
 		{
 			tile[i] = nextTileCoords[i];
 		}
-		updateTile(); // ¸üĞÂ VBO
+		updateTile(); // æ›´æ–° VBO
 	}
 }
 
@@ -463,16 +481,16 @@ bool checkFull(int row)
 
 void eliminateRow(int row)
 {
-	// Èç¹û¸ÃĞĞÒÑÂú£¬Ôò½øĞĞÏû³ıºÍÏÂÂä²Ù×÷,´Óµ±Ç°ĞĞ¿ªÊ¼£¬µ½×î¸ßĞĞ-1
+	// å¦‚æœè¯¥è¡Œå·²æ»¡ï¼Œåˆ™è¿›è¡Œæ¶ˆé™¤å’Œä¸‹è½æ“ä½œ,ä»å½“å‰è¡Œå¼€å§‹ï¼Œåˆ°æœ€é«˜è¡Œ-1
 	for (int j = row; j < board_height - 1; j++)
 	{
-		// ½«ÉÏÒ»ĞĞ(j+1)µÄ×´Ì¬ºÍÑÕÉ«¸´ÖÆµ½µ±Ç°ĞĞ(j)
+		// å°†ä¸Šä¸€è¡Œ(j+1)çš„çŠ¶æ€å’Œé¢œè‰²å¤åˆ¶åˆ°å½“å‰è¡Œ(j)
 		for (int i = 0; i < board_width; i++)
 		{
 			board[i][j] = board[i][j + 1];
-			// ¸üĞÂVBOÖĞµÄÑÕÉ«ĞÅÏ¢
-			vec4 colorAbove = black; // Ä¬ÈÏÎªºÚÉ«
-			// ¼ÆËã (i, j+1) ÔÚ board_colours ÖĞµÄÆğÊ¼Ë÷Òı
+			// æ›´æ–°VBOä¸­çš„é¢œè‰²ä¿¡æ¯
+			vec4 colorAbove = black; // é»˜è®¤ä¸ºé»‘è‰²
+			// è®¡ç®— (i, j+1) åœ¨ board_colours ä¸­çš„èµ·å§‹ç´¢å¼•
 			int indexAbove = 6 * (board_width * (j + 1) + i);
 			if (indexAbove < points_num)
 			{
@@ -481,35 +499,35 @@ void eliminateRow(int row)
 			changeCellColor(vec2(i, j), colorAbove);
 		}
 	}
-	// Çå¿Õ×î¶¥ĞĞ
+	// æ¸…ç©ºæœ€é¡¶è¡Œ
 	for (int i = 0; i < board_width; i++)
 	{
 		board[i][board_height - 1] = false;
 		changeCellColor(vec2(i, board_height - 1), black);
 	}
-	// Ôö¼ÓµÃ·Ö¡£ÒòÎªÔÚ´°¿ÚÖĞÏÔÊ¾±È½Ï¸´ÔÓ£¬ÕâÀïÔİÊ±Ö»ÔÚÃüÁîĞĞÏÔÊ¾
+	// å¢åŠ å¾—åˆ†ã€‚å› ä¸ºåœ¨çª—å£ä¸­æ˜¾ç¤ºæ¯”è¾ƒå¤æ‚ï¼Œè¿™é‡Œæš‚æ—¶åªåœ¨å‘½ä»¤è¡Œæ˜¾ç¤º
 	score++;
-	std::cout << "·ÖÊı: " << score << std::endl;
+	std::cout << "åˆ†æ•°: " << score << std::endl;
 }
 
-// ·ÅÖÃµ±Ç°·½¿é£¬²¢ÇÒ¸üĞÂÆåÅÌ¸ñ¶ÔÓ¦Î»ÖÃ¶¥µãµÄÑÕÉ«VBO
+// æ”¾ç½®å½“å‰æ–¹å—ï¼Œå¹¶ä¸”æ›´æ–°æ£‹ç›˜æ ¼å¯¹åº”ä½ç½®é¡¶ç‚¹çš„é¢œè‰²VBO
 void setTile()
 {
-	// Ã¿¸ö¸ñ×Ó
+	// æ¯ä¸ªæ ¼å­
 	int minY = board_height - 1;
 	for (int i = 0; i < 4; i++)
 	{
-		// »ñÈ¡¸ñ×ÓÔÚÆåÅÌ¸ñÉÏµÄ×ø±ê
+		// è·å–æ ¼å­åœ¨æ£‹ç›˜æ ¼ä¸Šçš„åæ ‡
 		int x = (tile[i] + tilePos).x;
 		int y = (tile[i] + tilePos).y;
 		minY = std::min(minY, y);
-		// ½«¸ñ×Ó¶ÔÓ¦ÔÚÆåÅÌ¸ñÉÏµÄÎ»ÖÃÉèÖÃÎªÌî³ä
+		// å°†æ ¼å­å¯¹åº”åœ¨æ£‹ç›˜æ ¼ä¸Šçš„ä½ç½®è®¾ç½®ä¸ºå¡«å……
 		board[x][y] = true;
-		// ²¢½«ÏàÓ¦Î»ÖÃµÄÑÕÉ«ĞŞ¸Ä
+		// å¹¶å°†ç›¸åº”ä½ç½®çš„é¢œè‰²ä¿®æ”¹
 		changeCellColor(vec2(x, y), gray);
 	}
 
-	// ´ÓÓ°ÏìµÄµ×²¿¿ªÊ¼¼ì²éËùÓĞĞĞ£¬Ö±µ½¶¥²¿
+	// ä»å½±å“çš„åº•éƒ¨å¼€å§‹æ£€æŸ¥æ‰€æœ‰è¡Œï¼Œç›´åˆ°é¡¶éƒ¨
 	for (int y_check = minY; y_check < board_height; ++y_check)
 	{
 		bool row_was_full = checkFull(y_check);
@@ -521,19 +539,19 @@ void setTile()
 	}
 }
 
-// ¸ø¶¨Î»ÖÃ(x,y)£¬ÒÆ¶¯·½¿é¡£ÓĞĞ§µÄÒÆ¶¯ÖµÎª(-1,0)£¬(1,0)£¬(0,-1)
-// ·Ö±ğ¶ÔÓ¦ÓÚÏò×ó£¬ÏòÏÂºÍÏòÓÒÒÆ¶¯¡£Èç¹ûÒÆ¶¯³É¹¦£¬·µ»ØÖµÎªtrue£¬·´Ö®Îªfalse
+// ç»™å®šä½ç½®(x,y)ï¼Œç§»åŠ¨æ–¹å—ã€‚æœ‰æ•ˆçš„ç§»åŠ¨å€¼ä¸º(-1,0)ï¼Œ(1,0)ï¼Œ(0,-1)
+// åˆ†åˆ«å¯¹åº”äºå‘å·¦ï¼Œå‘ä¸‹å’Œå‘å³ç§»åŠ¨ã€‚å¦‚æœç§»åŠ¨æˆåŠŸï¼Œè¿”å›å€¼ä¸ºtrueï¼Œåä¹‹ä¸ºfalse
 bool moveTile(vec2 direction)
 {
-	// ¼ÆËãÒÆ¶¯Ö®ºóµÄ·½¿éµÄÎ»ÖÃ×ø±ê
+	// è®¡ç®—ç§»åŠ¨ä¹‹åçš„æ–¹å—çš„ä½ç½®åæ ‡
 	vec2 newPos[4];
 	for (int i = 0; i < 4; i++)
 		newPos[i] = tile[i] + tilePos + direction;
 
-	// ¼ì²éÒÆ¶¯Ö®ºóµÄÓĞĞ§ĞÔ
+	// æ£€æŸ¥ç§»åŠ¨ä¹‹åçš„æœ‰æ•ˆæ€§
 	if (checkValid(newPos[0]) && checkValid(newPos[1]) && checkValid(newPos[2]) && checkValid(newPos[3]))
 	{
-		// ÓĞĞ§£ºÒÆ¶¯¸Ã·½¿é
+		// æœ‰æ•ˆï¼šç§»åŠ¨è¯¥æ–¹å—
 		tilePos.x = tilePos.x + direction.x;
 		tilePos.y = tilePos.y + direction.y;
 
@@ -545,10 +563,10 @@ bool moveTile(vec2 direction)
 	return false;
 }
 
-// ÖØĞÂÆô¶¯ÓÎÏ·
+// é‡æ–°å¯åŠ¨æ¸¸æˆ
 void restart()
 {
-	// Çå¿ÕÆåÅÌ¸ñ×´Ì¬
+	// æ¸…ç©ºæ£‹ç›˜æ ¼çŠ¶æ€
 	for (int i = 0; i < board_width; i++)
 	{
 		for (int j = 0; j < board_height; j++)
@@ -556,12 +574,12 @@ void restart()
 			if (board[i][j])
 			{
 				board[i][j] = false;
-				changeCellColor(vec2(i, j), black); // ½«ÑÕÉ«¸Ä»ØºÚÉ«
+				changeCellColor(vec2(i, j), black); // å°†é¢œè‰²æ”¹å›é»‘è‰²
 			}
 		}
 	}
 	score = 0;
-	// ÉèÖÃ¿ªÊ¼Ê±¼ä
+	// è®¾ç½®å¼€å§‹æ—¶é—´
 	gameRecord.setDateTime();
 	startTime = glfwGetTime();
 	lastTime = glfwGetTime();
@@ -569,47 +587,47 @@ void restart()
 	newTile();
 
 	std::cout << std::endl
-			  << "ÓÎÏ·¿ªÊ¼!" << std::endl;
-	std::cout << "·ÖÊı: " << score << std::endl;
+			  << "æ¸¸æˆå¼€å§‹!" << std::endl;
+	std::cout << "åˆ†æ•°: " << score << std::endl;
 }
 
-// ÓÎÏ·äÖÈ¾²¿·Ö
+// æ¸¸æˆæ¸²æŸ“éƒ¨åˆ†
 void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glUniform1i(locxsize, xsize);
 	glUniform1i(locysize, ysize);
 
-	// »æÖÆÆåÅÌ¸ñ±³¾°ºÍÍø¸ñÏß (ÔÚËùÓĞ×´Ì¬ÏÂ¶¼¿ÉÄÜĞèÒªÏÔÊ¾)
+	// ç»˜åˆ¶æ£‹ç›˜æ ¼èƒŒæ™¯å’Œç½‘æ ¼çº¿ (åœ¨æ‰€æœ‰çŠ¶æ€ä¸‹éƒ½å¯èƒ½éœ€è¦æ˜¾ç¤º)
 	glBindVertexArray(vao[1]);
-	glDrawArrays(GL_TRIANGLES, 0, points_num); // ÆåÅÌ¸ñ±³¾° (ÒÑ¹Ì¶¨µÄ·½¿é)
+	glDrawArrays(GL_TRIANGLES, 0, points_num); // æ£‹ç›˜æ ¼èƒŒæ™¯ (å·²å›ºå®šçš„æ–¹å—)
 	glBindVertexArray(vao[0]);
-	glDrawArrays(GL_LINES, 0, board_line_num * 2); // ÆåÅÌ¸ñÏß
+	glDrawArrays(GL_LINES, 0, board_line_num * 2); // æ£‹ç›˜æ ¼çº¿
 
-	// Ö»ÔÚ PLAYING »ò PAUSE ×´Ì¬ÏÂ»æÖÆµ±Ç°»î¶¯·½¿é
+	// åªåœ¨ PLAYING æˆ– PAUSE çŠ¶æ€ä¸‹ç»˜åˆ¶å½“å‰æ´»åŠ¨æ–¹å—
 	if (currentState == STATE_PLAYING || currentState == STATE_PAUSE)
 	{
 		glBindVertexArray(vao[2]);
-		glDrawArrays(GL_TRIANGLES, 0, 24); // µ±Ç°·½¿é
+		glDrawArrays(GL_TRIANGLES, 0, 24); // å½“å‰æ–¹å—
 	}
 
 	if (currentState == STATE_PAUSE)
 	{
-		std::cout << "ÔİÍ£ÖĞ... °´ P ¼ÌĞø" << '\r';
+		std::cout << "æš‚åœä¸­... æŒ‰ P ç»§ç»­" << '\r';
 	}
 	else if (currentState == STATE_GAME_OVER)
 	{
-		std::cout << "°´ R ÖØĞÂ¿ªÊ¼" << '\r';
+		std::cout << "æŒ‰ R é‡æ–°å¼€å§‹" << '\r';
 	}
 	else if (currentState == STATE_START_SCREEN)
 	{
-		std::cout << "°´ Enter ¿ªÊ¼ÓÎÏ·..." << '\r';
+		std::cout << "æŒ‰ Enter å¼€å§‹æ¸¸æˆ..." << '\r';
 	}
 
-	glFlush(); // È·±£»æÖÆÃüÁî±»·¢ËÍ
+	glFlush(); // ç¡®ä¿ç»˜åˆ¶å‘½ä»¤è¢«å‘é€
 }
 
-// ÔÚ´°¿Ú±»À­ÉìµÄÊ±ºò£¬¿ØÖÆÆåÅÌ¸ñµÄ´óĞ¡£¬Ê¹Ö®±£³Ö¹Ì¶¨µÄ±ÈÀı¡£
+// åœ¨çª—å£è¢«æ‹‰ä¼¸çš„æ—¶å€™ï¼Œæ§åˆ¶æ£‹ç›˜æ ¼çš„å¤§å°ï¼Œä½¿ä¹‹ä¿æŒå›ºå®šçš„æ¯”ä¾‹ã€‚
 void reshape(GLsizei w, GLsizei h)
 {
 	xsize = w;
@@ -619,11 +637,12 @@ void reshape(GLsizei w, GLsizei h)
 
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mode)
 {
-	// Í¨ÓÃ°´¼üÍË³ö£¬¿ÉÒÔÔÚÈÎºÎ×´Ì¬ÏÂ´¥·¢
+	// é€šç”¨æŒ‰é”®é€€å‡ºï¼Œå¯ä»¥åœ¨ä»»ä½•çŠ¶æ€ä¸‹è§¦å‘
 	if (key == GLFW_KEY_ESCAPE || key == GLFW_KEY_Q)
 	{
-		if(currentState == STATE_PAUSE || currentState == STATE_PLAYING){
-			// Èç¹ûÓÎÏ·ÊÇ½øĞĞ×´Ì¬»òÕßÍ£Ö¹×´Ì¬, ²ÅÓĞ±ØÒªÇĞ»»³ÉgameoverÒ²¾ÍÊÇ½áÊø×´Ì¬
+		if (currentState == STATE_PAUSE || currentState == STATE_PLAYING)
+		{
+			// å¦‚æœæ¸¸æˆæ˜¯è¿›è¡ŒçŠ¶æ€æˆ–è€…åœæ­¢çŠ¶æ€, æ‰æœ‰å¿…è¦åˆ‡æ¢æˆgameoverä¹Ÿå°±æ˜¯ç»“æŸçŠ¶æ€
 			gameover();
 		}
 		if (action == GLFW_PRESS)
@@ -631,38 +650,38 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 			exit(EXIT_SUCCESS);
 		}
 
-		return; // ´¦ÀíÍêÍË³öºóÖ±½Ó·µ»Ø
+		return; // å¤„ç†å®Œé€€å‡ºåç›´æ¥è¿”å›
 	}
 
-	// ¸ù¾İµ±Ç°ÓÎÏ·×´Ì¬´¦Àí°´¼ü
+	// æ ¹æ®å½“å‰æ¸¸æˆçŠ¶æ€å¤„ç†æŒ‰é”®
 	switch (currentState)
 	{
 	case STATE_START_SCREEN:
-		// ÔÚ¿ªÊ¼½çÃæ£¬Ö»ÏìÓ¦»Ø³µ¼ü¿ªÊ¼ÓÎÏ·
+		// åœ¨å¼€å§‹ç•Œé¢ï¼Œåªå“åº”å›è½¦é”®å¼€å§‹æ¸¸æˆ
 		if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
 		{
-			restart(); // ³õÊ¼»¯»òÖØÖÃÓÎÏ·×´Ì¬
+			restart(); // åˆå§‹åŒ–æˆ–é‡ç½®æ¸¸æˆçŠ¶æ€
 			currentState = STATE_PLAYING;
 		}
 		break;
 
 	case STATE_PLAYING:
-		// ÔÚÓÎÏ·½øĞĞÖĞ
-		// ´¦Àí·½¿éÒÆ¶¯ºÍĞı×ª (Ö»ÓĞÔÚPLAYING×´Ì¬ÏÂÓĞĞ§)
+		// åœ¨æ¸¸æˆè¿›è¡Œä¸­
+		// å¤„ç†æ–¹å—ç§»åŠ¨å’Œæ—‹è½¬ (åªæœ‰åœ¨PLAYINGçŠ¶æ€ä¸‹æœ‰æ•ˆ)
 		switch (key)
 		{
 		case GLFW_KEY_UP:
 			if (action == GLFW_PRESS || action == GLFW_REPEAT)
 				rotate();
 			break;
-		case GLFW_KEY_SPACE: // Ö±½Ófall_through
+		case GLFW_KEY_SPACE: // ç›´æ¥fall_through
 		case GLFW_KEY_DOWN:
 			if (action == GLFW_PRESS || action == GLFW_REPEAT)
 			{
 				if (!moveTile(vec2(0, -1)))
 				{
 					setTile();
-					newTile(); // newTile ÄÚ²¿»á¼ì²éÊÇ·ñÓÎÏ·½áÊø²¢ÇĞ»»×´Ì¬
+					newTile(); // newTile å†…éƒ¨ä¼šæ£€æŸ¥æ˜¯å¦æ¸¸æˆç»“æŸå¹¶åˆ‡æ¢çŠ¶æ€
 				}
 			}
 			break;
@@ -674,86 +693,86 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 			if (action == GLFW_PRESS || action == GLFW_REPEAT)
 				moveTile(vec2(1, 0));
 			break;
-		// ´¦ÀíÔİÍ£¼ü
+		// å¤„ç†æš‚åœé”®
 		case GLFW_KEY_P:
 			if (action == GLFW_PRESS)
 			{
-				currentState = STATE_PAUSE; // ÇĞ»»µ½ÔİÍ£×´Ì¬
-				std::cout << "ÓÎÏ·ÒÑÔİÍ£" << std::endl;
-				// ÔİÍ£Ê±²»ĞèÒªÖØÖÃlastTime£¬ÒòÎª»Ö¸´Ê±mainÑ­»·»á×Ô¶¯´¦Àí
+				currentState = STATE_PAUSE; // åˆ‡æ¢åˆ°æš‚åœçŠ¶æ€
+				std::cout << "æ¸¸æˆå·²æš‚åœ" << std::endl;
+				// æš‚åœæ—¶ä¸éœ€è¦é‡ç½®lastTimeï¼Œå› ä¸ºæ¢å¤æ—¶mainå¾ªç¯ä¼šè‡ªåŠ¨å¤„ç†
 			}
 			break;
 		}
 		break;
 
 	case STATE_PAUSE:
-		// ÔÚÔİÍ£×´Ì¬ÏÂ£¬Ö»ÏìÓ¦ 'P' ¼üÈ¡ÏûÔİÍ£
+		// åœ¨æš‚åœçŠ¶æ€ä¸‹ï¼Œåªå“åº” 'P' é”®å–æ¶ˆæš‚åœ
 		if (key == GLFW_KEY_P && action == GLFW_PRESS)
 		{
-			currentState = STATE_PLAYING; // ÇĞ»»»ØÓÎÏ·×´Ì¬
-			// ÖØÖÃÏÂÂä¼ÆÊ±Æ÷£¬±ÜÃâ»Ö¸´Ê±Á¢¼´ÏÂÂä
+			currentState = STATE_PLAYING; // åˆ‡æ¢å›æ¸¸æˆçŠ¶æ€
+			// é‡ç½®ä¸‹è½è®¡æ—¶å™¨ï¼Œé¿å…æ¢å¤æ—¶ç«‹å³ä¸‹è½
 			lastTime = glfwGetTime();
 
 			std::cout << std::endl
-					  << "ÓÎÏ·ÒÑ»Ö¸´" << std::endl;
+					  << "æ¸¸æˆå·²æ¢å¤" << std::endl;
 		}
-		break; // STATE_PAUSE ½áÊø
+		break; // STATE_PAUSE ç»“æŸ
 
 	case STATE_GAME_OVER:
-		// ÔÚÓÎÏ·½áÊø×´Ì¬ÏÂ£¬Ö»ÏìÓ¦ 'R' ¼üÖØĞÂ¿ªÊ¼
+		// åœ¨æ¸¸æˆç»“æŸçŠ¶æ€ä¸‹ï¼Œåªå“åº” 'R' é”®é‡æ–°å¼€å§‹
 		if (key == GLFW_KEY_R && action == GLFW_PRESS)
 		{
-			currentState = STATE_PLAYING; // ÇĞ»»»ØÓÎÏ·×´Ì¬
-			restart();					  // ÖØÖÃÓÎÏ·
+			currentState = STATE_PLAYING; // åˆ‡æ¢å›æ¸¸æˆçŠ¶æ€
+			restart();					  // é‡ç½®æ¸¸æˆ
 		}
-		break; // STATE_GAME_OVER ½áÊø
+		break; // STATE_GAME_OVER ç»“æŸ
 	}
 }
 
 void inputUsername()
 {
-	std::cout<<"Elaine's Tetris"<<std::endl;
-	std::cout<<"-------------------------------------------------------------"<<std::endl;
+	std::cout << "Elaine's Tetris" << std::endl;
+	std::cout << "-------------------------------------------------------------" << std::endl;
 	char recordChoice;
 	bool validInput = false;
 
 	while (!validInput)
 	{
-		std::cout << "ÊÇ·ñÒª¼ÇÂ¼±¾´ÎÓÎÏ·ÓÃ»§Ãû£¿(y/n): ";
+		std::cout << "æ˜¯å¦è¦è®°å½•æœ¬æ¬¡æ¸¸æˆç”¨æˆ·åï¼Ÿ(y/n): ";
 		std::cin >> recordChoice;
 
-		// ÇåÀíÊäÈë»º³åÇø£¬·ÀÖ¹ÉÏ´ÎÊäÈëµÄ»Ø³µÓ°ÏìºóĞø getline
+		// æ¸…ç†è¾“å…¥ç¼“å†²åŒºï¼Œé˜²æ­¢ä¸Šæ¬¡è¾“å…¥çš„å›è½¦å½±å“åç»­ getline
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-		recordChoice = std::tolower(recordChoice); // ×ª»»ÎªĞ¡Ğ´
+		recordChoice = std::tolower(recordChoice); // è½¬æ¢ä¸ºå°å†™
 
 		if (recordChoice == 'y')
 		{
-			std::cout << "ÇëÊäÈëÄúµÄÓÃ»§Ãû: ";
-			// Ê¹ÓÃ std::getline ¶ÁÈ¡¿ÉÄÜ°üº¬¿Õ¸ñµÄÓÃ»§Ãû
+			std::cout << "è¯·è¾“å…¥æ‚¨çš„ç”¨æˆ·å: ";
+			// ä½¿ç”¨ std::getline è¯»å–å¯èƒ½åŒ…å«ç©ºæ ¼çš„ç”¨æˆ·å
 			std::getline(std::cin, currentUsername);
 			if (currentUsername.empty())
-			{ // ·ÀÖ¹ÓÃ»§Ö±½Ó»Ø³µ
+			{ // é˜²æ­¢ç”¨æˆ·ç›´æ¥å›è½¦
 				currentUsername = defaultUsername;
-				std::cout << "ÓÃ»§Ãû²»ÄÜÎª¿Õ£¬½«Ê¹ÓÃÄ¬ÈÏÃû: " << defaultUsername << std::endl;
+				std::cout << "ç”¨æˆ·åä¸èƒ½ä¸ºç©ºï¼Œå°†ä½¿ç”¨é»˜è®¤å: " << defaultUsername << std::endl;
 			}
 			// std::cout<<"currentUsername: "<<currentUsername<<std::endl;
 			gameRecord.setUsername(currentUsername);
-			
+
 			validInput = true;
 		}
 		else if (recordChoice == 'n')
 		{
 
-			std::cout << "½«Ê¹ÓÃÄ¬ÈÏÃû: " << defaultUsername << std::endl;
+			std::cout << "å°†ä½¿ç”¨é»˜è®¤å: " << defaultUsername << std::endl;
 			currentUsername = defaultUsername;
 			gameRecord.setUsername(currentUsername);
 			validInput = true;
 		}
 		else
 		{
-			std::cout << "ÊäÈëÎŞĞ§£¬ÇëÊäÈë 'y' »ò 'n'" << std::endl;
-			// ÇåÀí cin µÄ´íÎó×´Ì¬£¨Èç¹ûÊäÈëÁË·Ç×Ö·û£©
+			std::cout << "è¾“å…¥æ— æ•ˆï¼Œè¯·è¾“å…¥ 'y' æˆ– 'n'" << std::endl;
+			// æ¸…ç† cin çš„é”™è¯¯çŠ¶æ€ï¼ˆå¦‚æœè¾“å…¥äº†éå­—ç¬¦ï¼‰
 			if (std::cin.fail())
 			{
 				std::cin.clear();
@@ -765,10 +784,10 @@ void inputUsername()
 
 int main(int argc, char **argv)
 {
-	// Ê¹ÓÃÃüÁîĞĞ½»»¥»ñÈ¡username
+	// ä½¿ç”¨å‘½ä»¤è¡Œäº¤äº’è·å–username
 	inputUsername();
 
-	// ´òÓ¡ÓÎÏ·¼ÇÂ¼
+	// æ‰“å°æ¸¸æˆè®°å½•
 	printGameRecords();
 
 	glfwInit();
@@ -780,20 +799,20 @@ int main(int argc, char **argv)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-	// ´´½¨´°¿Ú¡£
-	// ¼ÆËãÆåÅÌÇøÓò¿í¶È + Íø¸ñÏß¿í¶È + ÓÒ²àÁô°×¿í¶È
-	int boardPixelWidth = (board_width + 2) * tile_width; // +2 ÊÇÎªÁË×óÓÒ±ß¿ò
+	// åˆ›å»ºçª—å£ã€‚
+	// è®¡ç®—æ£‹ç›˜åŒºåŸŸå®½åº¦ + ç½‘æ ¼çº¿å®½åº¦ + å³ä¾§ç•™ç™½å®½åº¦
+	int boardPixelWidth = (board_width + 2) * tile_width; // +2 æ˜¯ä¸ºäº†å·¦å³è¾¹æ¡†
 	int scoreBoardWidth = 0;
-	// scoreBoardWidth = 150;							  // ¼ÙÉè¸ø¼Æ·Ö°åÁô 150 ÏñËØ
+	// scoreBoardWidth = 150;							  // å‡è®¾ç»™è®¡åˆ†æ¿ç•™ 150 åƒç´ 
 	int windowWidth = boardPixelWidth + scoreBoardWidth;
 
-	// ¼ÆËãÆåÅÌÇøÓò¸ß¶È + Íø¸ñÏß¸ß¶È
-	int windowHeight = (board_height + 2) * tile_width; // +2 ÊÇÎªÁËÉÏÏÂ±ß¿ò
+	// è®¡ç®—æ£‹ç›˜åŒºåŸŸé«˜åº¦ + ç½‘æ ¼çº¿é«˜åº¦
+	int windowHeight = (board_height + 2) * tile_width; // +2 æ˜¯ä¸ºäº†ä¸Šä¸‹è¾¹æ¡†
 
-	// Ê¹ÓÃĞÂ³ß´ç´´½¨´°¿Ú
+	// ä½¿ç”¨æ–°å°ºå¯¸åˆ›å»ºçª—å£
 	GLFWwindow *window = glfwCreateWindow(windowWidth, windowHeight, "Tetris - 2023271073 - Elaine", NULL, NULL);
 
-	// ¸üĞÂÈ«¾Ö±äÁ¿ (Èç¹ûÆäËûµØ·½ÓÃµ½ÁË xsize, ysize)
+	// æ›´æ–°å…¨å±€å˜é‡ (å¦‚æœå…¶ä»–åœ°æ–¹ç”¨åˆ°äº† xsize, ysize)
 	xsize = windowWidth;
 	ysize = windowHeight;
 	if (window == NULL)
@@ -820,27 +839,27 @@ int main(int argc, char **argv)
 
 	while (!glfwWindowShouldClose(window))
 	{
-		// Ö»ÔÚ STATE_PLAYING ×´Ì¬ÏÂ´¦Àí×Ô¶¯ÏÂÂä
+		// åªåœ¨ STATE_PLAYING çŠ¶æ€ä¸‹å¤„ç†è‡ªåŠ¨ä¸‹è½
 		if (currentState == STATE_PLAYING)
 		{
 			double currentTime = glfwGetTime();
 			if (currentTime - lastTime >= fallInterval)
 			{
-				// ³¢ÊÔÏòÏÂÒÆ¶¯
+				// å°è¯•å‘ä¸‹ç§»åŠ¨
 				if (!moveTile(vec2(0, -1)))
 				{
-					setTile(); // ¹Ì¶¨·½¿é
-					newTile(); // Éú³ÉĞÂ·½¿é (newTile ÄÚ²¿¼ì²éÊÇ·ñ Game Over ²¢¿ÉÄÜÇĞ»»×´Ì¬)
+					setTile(); // å›ºå®šæ–¹å—
+					newTile(); // ç”Ÿæˆæ–°æ–¹å— (newTile å†…éƒ¨æ£€æŸ¥æ˜¯å¦ Game Over å¹¶å¯èƒ½åˆ‡æ¢çŠ¶æ€)
 				}
-				lastTime = currentTime; // ¸üĞÂÉÏ´ÎÏÂÂäÊ±¼ä
+				lastTime = currentTime; // æ›´æ–°ä¸Šæ¬¡ä¸‹è½æ—¶é—´
 			}
 		}
 
-		display(); // äÖÈ¾µ±Ç°Ö¡
+		display(); // æ¸²æŸ“å½“å‰å¸§
 
-		// »º³åÇø½»»»ÓëÊÂ¼ş´¦Àí
-		glfwSwapBuffers(window); // ÏÔÊ¾»­Ãæ
-		glfwPollEvents();		 // ´¦ÀíÊäÈëºÍÆäËû´°¿ÚÊÂ¼ş
+		// ç¼“å†²åŒºäº¤æ¢ä¸äº‹ä»¶å¤„ç†
+		glfwSwapBuffers(window); // æ˜¾ç¤ºç”»é¢
+		glfwPollEvents();		 // å¤„ç†è¾“å…¥å’Œå…¶ä»–çª—å£äº‹ä»¶
 	}
 	glfwTerminate();
 	return 0;

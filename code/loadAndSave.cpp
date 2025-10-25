@@ -1,5 +1,5 @@
 // loadAndSave.cpp
-#include "loadAndSave.h" // °üº¬¶ÔÓ¦µÄÍ·ÎÄ¼ş
+#include "loadAndSave.h" // åŒ…å«å¯¹åº”çš„å¤´æ–‡ä»¶
 #include <fstream>
 #include <chrono>
 #include <iomanip>
@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <sstream>
 
-// Ö±½ÓÔÚmainÖĞ´´½¨GameRecordÀàÀ´´æ´¢ĞÅÏ¢
+// ç›´æ¥åœ¨mainä¸­åˆ›å»ºGameRecordç±»æ¥å­˜å‚¨ä¿¡æ¯
 void GameRecord::setUsername(const std::string &username) { username_ = username; }
 
 void GameRecord::setDuration(double duration) { duration_ = duration; }
@@ -44,28 +44,28 @@ std::vector<GameRecord> loadGameRecords()
         {
             infile >> records_json;
             infile.close();
-            // È·±£ÊÇÊı×éÀàĞÍ
+            // ç¡®ä¿æ˜¯æ•°ç»„ç±»å‹
             if (records_json.is_array())
             {
                 records = records_json.get<std::vector<GameRecord>>();
-                std::cout << "³É¹¦¼ÓÔØ " << records.size() << " ÌõÓÎÏ·¼ÇÂ¼" << std::endl;
+                std::cout << "æˆåŠŸåŠ è½½ " << records.size() << " æ¡æ¸¸æˆè®°å½•" << std::endl;
                 flag = true;
             }
             else
             {
-                std::cerr << "¾¯¸æ: " << filename << " ÎÄ¼şÄÚÈİ²»ÊÇÓĞĞ§µÄJSONÊı×é£¬½«ÊÓÎª¿Õ¼ÇÂ¼" << std::endl;
+                std::cerr << "è­¦å‘Š: " << filename << " æ–‡ä»¶å†…å®¹ä¸æ˜¯æœ‰æ•ˆçš„JSONæ•°ç»„ï¼Œå°†è§†ä¸ºç©ºè®°å½•" << std::endl;
             }
         }
         catch (json::parse_error &e)
         {
-            std::cerr << "JSON ½âÎö´íÎó: " << e.what() << " ½«ÊÓÎª¿Õ¼ÇÂ¼" << std::endl;
+            std::cerr << "JSON è§£æé”™è¯¯: " << e.what() << " å°†è§†ä¸ºç©ºè®°å½•" << std::endl;
             if (infile.is_open())
                 infile.close();
-            // ´´½¨¿ÕjsonÎÄ¼ş
+            // åˆ›å»ºç©ºjsonæ–‡ä»¶
         }
         catch (json::exception &e)
         {
-            std::cerr << "JSON ÀàĞÍ×ª»»´íÎó: " << e.what() << " ½«ÊÓÎª¿Õ¼ÇÂ¼" << std::endl;
+            std::cerr << "JSON ç±»å‹è½¬æ¢é”™è¯¯: " << e.what() << " å°†è§†ä¸ºç©ºè®°å½•" << std::endl;
             if (infile.is_open())
                 infile.close();
             ;
@@ -73,12 +73,12 @@ std::vector<GameRecord> loadGameRecords()
     }
     else
     {
-        // ÎÄ¼ş²»´æÔÚ£¬ÕâÊÇÕı³£Çé¿ö£¬²»ĞèÒª±¨´í£¬Ö±½Ó·µ»Ø¿Õvector
-        std::cout << "¼ÇÂ¼ÎÄ¼ş " << filename << " ²»´æÔÚ£¬½«´´½¨ĞÂÎÄ¼ş" << std::endl;
+        // æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¿™æ˜¯æ­£å¸¸æƒ…å†µï¼Œä¸éœ€è¦æŠ¥é”™ï¼Œç›´æ¥è¿”å›ç©ºvector
+        std::cout << "è®°å½•æ–‡ä»¶ " << filename << " ä¸å­˜åœ¨ï¼Œå°†åˆ›å»ºæ–°æ–‡ä»¶" << std::endl;
     }
     if (!flag)
     {
-        // ´´½¨¿ÕjsonÎÄ¼ş
+        // åˆ›å»ºç©ºjsonæ–‡ä»¶
         std::ofstream outfile(filename);
         outfile << json::array().dump(4) << std::endl;
         outfile.close();
@@ -93,33 +93,33 @@ void printGameRecords()
     if (records.empty())
     {
         std::cout << "------------------------------------------" << std::endl;
-        std::cout << "          ÔİÎŞÓÎÏ·¼ÇÂ¼¡£" << std::endl;
+        std::cout << "          æš‚æ— æ¸¸æˆè®°å½•ã€‚" << std::endl;
         std::cout << "------------------------------------------" << std::endl;
         return;
     }
 
-    // °´·ÖÊıÅÅĞò¼ÇÂ¼ (´Ó¸ßµ½µÍ)
+    // æŒ‰åˆ†æ•°æ’åºè®°å½• (ä»é«˜åˆ°ä½)
     std::sort(records.begin(), records.end(), [](const GameRecord &a, const GameRecord &b)
               {
-                  return a.getScore() > b.getScore(); // ·ÖÊı¸ßµÄÅÅÇ°Ãæ
+                  return a.getScore() > b.getScore(); // åˆ†æ•°é«˜çš„æ’å‰é¢
               });
 
-    // ´òÓ¡±íÍ·
+    // æ‰“å°è¡¨å¤´
     std::cout << "-------------------------------------------------------------" << std::endl;
-    std::cout << std::left // ×ó¶ÔÆë
-              << std::setw(14) << "ÓÃ»§Ãû"
-              << std::setw(26) << "ÓÎÏ·Ê±¼ä"
-              << std::setw(14) << "Ê±³¤(Ãë)"
-              << std::setw(10) << "µÃ·Ö" << std::endl;
+    std::cout << std::left // å·¦å¯¹é½
+              << std::setw(14) << "ç”¨æˆ·å"
+              << std::setw(26) << "æ¸¸æˆæ—¶é—´"
+              << std::setw(14) << "æ—¶é•¿(ç§’)"
+              << std::setw(10) << "å¾—åˆ†" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
 
-    // ±éÀú²¢´òÓ¡Ã¿Ìõ¼ÇÂ¼
+    // éå†å¹¶æ‰“å°æ¯æ¡è®°å½•
     for (const auto &record : records)
     {
         std::cout << std::left
-                  << std::setw(14) << record.getUsername() // Ê¹ÓÃ getter »ñÈ¡Ë½ÓĞ³ÉÔ±
+                  << std::setw(14) << record.getUsername() // ä½¿ç”¨ getter è·å–ç§æœ‰æˆå‘˜
                   << std::setw(26) << record.getDateTime()
-                  << std::setw(14) << std::fixed << std::setprecision(1) << record.getDuration() // ±£ÁôÒ»Î»Ğ¡Êı
+                  << std::setw(14) << std::fixed << std::setprecision(1) << record.getDuration() // ä¿ç•™ä¸€ä½å°æ•°
                   << std::setw(10) << record.getScore() << std::endl;
     }
 
@@ -129,26 +129,26 @@ void printGameRecords()
 void saveGameRecord(const GameRecord &gameRecord)
 {
 
-    // ÏÈµ÷ÓÃ loadGameRecords ¶ÁÈ¡ÏÖÓĞÊı¾İ£¨»òµÃµ½Ò»¸ö¿Õvector£©
+    // å…ˆè°ƒç”¨ loadGameRecords è¯»å–ç°æœ‰æ•°æ®ï¼ˆæˆ–å¾—åˆ°ä¸€ä¸ªç©ºvectorï¼‰
     std::vector<GameRecord> existingRecords = loadGameRecords();
 
-    // ½«ĞÂ¼ÇÂ¼Ìí¼Óµ½ vector ÖĞ
+    // å°†æ–°è®°å½•æ·»åŠ åˆ° vector ä¸­
     existingRecords.push_back(gameRecord);
 
-    // ½«Õû¸ö vector ×ª»»Îª JSON Êı×é
-    // nlohmann/json ¿ÉÒÔÖ±½Ó´Ó std::vector<GameRecord> ×ª»»
+    // å°†æ•´ä¸ª vector è½¬æ¢ä¸º JSON æ•°ç»„
+    // nlohmann/json å¯ä»¥ç›´æ¥ä» std::vector<GameRecord> è½¬æ¢
     json records_json = existingRecords;
 
-    // ½« JSON Êı×éĞ´ÈëÎÄ¼ş£¨¸²¸ÇĞ´Èë£©
+    // å°† JSON æ•°ç»„å†™å…¥æ–‡ä»¶ï¼ˆè¦†ç›–å†™å…¥ï¼‰
     std::ofstream outfile(filename);
     if (outfile.is_open())
     {
-        outfile << records_json.dump(4) << std::endl; // Ê¹ÓÃ¸ñÊ½»¯Êä³ö
+        outfile << records_json.dump(4) << std::endl; // ä½¿ç”¨æ ¼å¼åŒ–è¾“å‡º
         outfile.close();
-        std::cout << "ÓÎÏ·¼ÇÂ¼ÒÑ¸üĞÂ²¢±£´æ¡£" << std::endl;
+        std::cout << "æ¸¸æˆè®°å½•å·²æ›´æ–°å¹¶ä¿å­˜ã€‚" << std::endl;
     }
     else
     {
-        std::cerr << "´íÎó: ÎŞ·¨´ò¿ªÎÄ¼ş " << filename << " ½øĞĞĞ´Èë¡£" << std::endl;
+        std::cerr << "é”™è¯¯: æ— æ³•æ‰“å¼€æ–‡ä»¶ " << filename << " è¿›è¡Œå†™å…¥ã€‚" << std::endl;
     }
 }
